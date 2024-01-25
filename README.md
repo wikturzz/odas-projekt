@@ -1,3 +1,1 @@
-Aby uruchomic aplikacje:
-docker-compose build
-docker-compose up
+Projekt na ODAS bezpieczna aplikacja we Flasku do przechowywania notatek
