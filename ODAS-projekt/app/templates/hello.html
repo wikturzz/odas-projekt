@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hello Page</title>
+    <style>
+        /* Similar CSS styles as the login and registration pages */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        h1, h3 {
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        a {
+            text-decoration: none;
+            color: #007bff;
+        }
+        a:hover {
+            color: #0056b3;
+        }
+        .form-field {
+            margin-bottom: 15px;
+        }
+        .form-field input[type="submit"] {
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+        .form-field input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .note-form {
+            margin-bottom: 30px;
+        }
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+        }
+        .password-input {
+            width: auto;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+    <body>
+    <h1>Hello {{ username }}!</h1>
+    
+    <form action={{ url_for('render') }} method="post">
+    
+      <h3>Text style examples:</h3>
+      Bold: **Text**<br>
+      Italic: *Text*<br>
+      Heading: #Text   (Use more '#' for different heading)<br>
+      Reference: [Name](url)<br>
+      Image: ![](imageUrl.png "Title")<br><br>
+    
+      <input type="checkbox" id="shared" name="shared" value="true">
+      <label for="shared">Share</label><br>
+      <label for="markdown">Input some markdown:</label><br>
+      <textarea id="markdown" name="markdown" rows="20" cols="100"></textarea>
+      <br>
+      <input type="submit" value="Submit">
+      <label for="note_password">Note password: </label>
+      <input type="password" id="note_password" name="note_password"><br>
+    </form>
+    
+    
+    {% if notes|length > 0 %}
+    <h1> Your notes: </h1>
+    <ul>
+    {% for note in notes %}
+      <li>
+        <a href="{{ url_for('render') }}/{{note.0}}">
+          Note {{ loop.index }}
+        </a>
+      </li>
+    {% endfor %}
+    </ul>
+    
+    {% endif %}
+    
+    {% if protected_notes|length > 0 %}
+    <h1> Your protected notes: </h1>
+    <ul>
+    {% for note in protected_notes %}
+      <li>
+        <a href="{{ url_for('render') }}/{{note.0}}">
+          Note {{ loop.index }} Protected<br>
+        </a>
+         <label for="note_password{{note.0}}"> Password: </label>
+          <input type="password" id="note_password{{note.0}}" name="note_password{{note.0}}"><br>
+      </li>
+    {% endfor %}
+    </ul>
+    
+    {% endif %}
+    
+    {% if shared_notes|length > 0 %}
+    <h1> Shared notes: </h1>
+    <ul>
+    {% for shared_note in shared_notes %}
+      <li><a href="{{ url_for('render') }}/{{shared_note.0}}"> Note {{ loop.index }}</a></li>
+    {% endfor %}
+    </ul>
+    
+    {% endif %}
+    
+    
+    <form action={{ url_for('logout') }}>
+      <input type="submit" value="Log out" />
+    </form>
+    </body>
+    </html>

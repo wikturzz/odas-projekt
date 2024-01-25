@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>QR Code</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .qr-code {
+            margin: 20px auto;
+            display: block;
+        }
+        .login-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .login-link:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Twój Kod QR TOTP</h1>
+        <img src="{{ qr_img_data }}" alt="TOTP QR Code" class="qr-code">
+        <div>
+            <a href="/" class="login-link">Wróć do ekranu logowania</a>
+        </div>
+    </div>
+</body>
+</html>

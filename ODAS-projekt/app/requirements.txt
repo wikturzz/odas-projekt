@@ -1,0 +1,12 @@
+Flask==2.1.0
+Werkzeug==2.2.0
+Gunicorn
+Flask_Login==0.6.2
+Flask_Limiter==3.1.0
+Markdown==3.4.1
+Bleach==5.0.1
+passlib==1.7.4
+requests==2.28.1
+pyotp
+flask_qrcode
+
