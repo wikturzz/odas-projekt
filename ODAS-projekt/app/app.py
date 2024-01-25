@@ -123,7 +123,7 @@ def totp_verify():
 
     if user and pyotp.TOTP(user.totp_secret).verify(totp_code):
         login_user(user)
-        session.pop('temp_username', None)  # Usuń zmienną tymczasową
+        session.pop('temp_username', None)  
         return redirect('/hello')
     else:
         return "Invalid TOTP code.", 401
@@ -133,6 +133,7 @@ def totp_verify():
 def logout():
     logout_user()
     return redirect("/")
+
 
 
 @app.route("/hello", methods=['GET'])
@@ -154,6 +155,7 @@ def hello():
         protected_notes = sql.fetchall()
 
         return render_template("hello.html", username=username, notes=unprotected_notes, shared_notes=shared_notes, protected_notes=protected_notes)
+
 
 
 @app.route("/render", methods=['POST'])
